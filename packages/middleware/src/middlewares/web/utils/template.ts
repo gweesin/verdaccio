@@ -19,7 +19,25 @@ export interface WebpackManifest {
   [key: string]: string;
 }
 
-export default function renderTemplate(template: Template, manifest: WebpackManifest) {
+export interface ViteManifest {
+  [key: string]: ViteManifestChunk;
+}
+
+export interface ViteManifestChunk {
+  src?: string;
+  file: string;
+  css?: string[];
+  assets?: string[];
+  isEntry?: boolean;
+  isDynamicEntry?: boolean;
+  imports?: string[];
+  dynamicImports?: string[];
+}
+
+export default function renderTemplate(
+  template: Template,
+  manifest: WebpackManifest | ViteManifest
+) {
   debug('template %o', template);
   debug('manifest %o', manifest);
 
